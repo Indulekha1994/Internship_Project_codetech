@@ -1,0 +1,101 @@
+
+@import url( 'https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-image: url('img/beach.jpg') !important;
+    background-size: cover;
+    background-color: rgb(94, 220, 224);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: aliceblue;
+    font-family: sans-serif;
+    padding: 0 10px;
+}
+#c1{
+    margin-left: 80px;
+    background-color:none;
+    border-radius: 10px;
+    box-shadow: 1px 1px 25px rgb(10, 10, 10);
+    background-position: left;
+    background-repeat: no-repeat;
+    background-image: url('img/beach.jpg'); 
+}
+#c1 .bi{
+    color: white !important;
+}
+.deg{
+    margin-top: 40px;
+    margin-left: 10px;
+    color: white ;
+}
+
+::placeholder{
+    color: aliceblue;
+}
+#city{
+    width: 200px;
+    padding: 10px;
+    background-image: url('img/beach.jpg');
+    border: 0;
+    outline: none;
+    color: rgb(250, 244, 244) !important;  
+}
+#locbtn{
+    background-image: url('img/beach.jpg');
+    color: white;
+    outline: none;
+    border: none;
+}
+
+<!--Today Highlight-->
+
+.subcards .bi{
+    width: 10px;
+    height: 150px;
+    color:#5170ff !important;
+}
+.subcards .card h5{
+    color: #5170ff !important;
+}
+.subcards .card p{
+    color: #5170ff;
+    font-weight: 10px;
+    align-items: center;
+    text-align: center;
+}
+#c2{
+    margin-right: 80px;
+    border-radius: 10px;
+    background-color: #c6e0f7;
+    box-shadow: 1px 1px 1px white;
+    text-align: center;
+    background-image: url('img/beach.jpg');
+     
+}
+.subcards .card{
+    font-weight: 10px;
+    margin-top: 10px;
+    margin-left: 30px;
+    background-color: white;
+    box-shadow: 1px 1px 5px #5170ff;
+    border-radius: 10px;
+    border: none;
+}
+#forecast{
+    display: flex;
+    flex-wrap: wrap;
+    height: 150px;
+    margin-left: 20px;
+    margin-right: 80px;
+    margin-top: 20px;
+    border-radius: 10px;
+    text-align: center;
+    color:white;
+    text-shadow: #5170ff;
+
+}
+
