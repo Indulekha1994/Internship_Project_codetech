@@ -1,22 +1,51 @@
 *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  background-color: rgb(197, 243, 228);
 }
+.card {
 
-.App h1{
-    margin: 20px 0px;
-    text-align: center;
-    color: #4CAF50;
-    margin-top: 50px;
-}
-.App {
+  margin-left: 600px;
+  margin-top: -130px;
+  padding-top: 10px;
   text-align: center;
-  background-color: #d6dbe4;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 120px;
+  height: 60px;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  border-radius: 10px 10px 10px 10px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 0 10px rebeccapurple;
+}
+.chart{
+  margin-left: 300px;
+  margin-top: 50px;
+  padding: 10px;
+   width: 500px;
+  height: 400px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px 10px 10px 10px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 50 10px rebeccapurple;
+}
+.chart .Pie{
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  color: blueviolet;
+}
+h1{
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  color: blueviolet;
+}
+h2{
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  color: blueviolet; 
 }
