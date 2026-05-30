@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Room</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+<div class="page-container">
+    <div class="content">
+        <h1>Welcome to {{room_name}}</h1>
+
+        <!-- Chat container -->
+        <div class="chats-container" id="chatContainer">
+            {% for message in messages %}
+                {% if message.sender|lower == username|lower %}
+                    <div class="single-message sent">
+                        <div class="msg-body">{{ message.message }}</div>
+                        <p class="sender">Me</p>
+                    </div>
+                {% else %}
+                    <div class="single-message received">
+                        <div class="msg-body">{{ message.message }}</div>
+                        <p class="sender">{{ message.sender }}</p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <!-- Message form -->
+        <form id="msg-form" class="d-flex mt-3">
+            {% csrf_token %}
+            <textarea name="message" id="message" rows="3" placeholder="Enter your message" class="form-control me-2"></textarea>
+            <button type="submit" class="btn btn-primary">&#10003;</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    const websocketProtocol = window.location.protocol === "https:" ? "wss" : "ws";
+    const wsEndpoint = `${websocketProtocol}://${window.location.host}/ws/notification/{{room_name}}/`;
+
+    const socket = new WebSocket(wsEndpoint);
+
+    socket.onopen = () => console.log("WebSocket connected");
+    socket.onclose = () => console.log("WebSocket closed");
+
+    // Handle form submission
+    document.getElementById('msg-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const message = document.getElementById('message').value;
+
+        socket.send(JSON.stringify({
+            'message': message,
+            'room_name': '{{room_name}}',
+            'sender': '{{username}}'
+        }));
+
+        document.getElementById('message').value = "";
+    });
+
+    // Handle incoming messages
+    socket.addEventListener("message", (event) => {
+        const data = JSON.parse(event.data).message;
+
+        const sender = data.sender;
+        const text = data.message;
+
+        const container = document.getElementById("chatContainer");
+
+        if (sender === "{{username}}") {
+            container.innerHTML += `
+                <div class="single-message sent">
+                    <div class="msg-body">${text}</div>
+                    <p class="sender">Me</p>
+                </div>`;
+        } else {
+            container.innerHTML += `
+                <div class="single-message received">
+                    <div class="msg-body">${text}</div>
+                    <p class="sender">${sender}</p>
+                </div>`;
+        }
+
+        container.scrollTop = container.scrollHeight;
+    });
+</script>
+</body>
+</html>
